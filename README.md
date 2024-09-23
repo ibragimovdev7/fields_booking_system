@@ -1,5 +1,5 @@
 ## 1 Repozitoriyani klonlash:
-git clone <repository-url>
+git clone <repository-url> /n
 cd football_booking
 ## Virtual muhit yaratish va aktivatsiya qilish:
 python -m venv venv
