@@ -1,6 +1,10 @@
+from django.contrib.postgres.aggregates import ArrayAgg
+from django.db.models import Subquery, OuterRef, F
+from django.db.models.functions import JSONObject
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 
+from bookings.models import Booking
 from . import filters
 from .models import FootballField, FieldImage
 from .permissions import IsOwnerOrReadOnly
@@ -15,6 +19,21 @@ class FootballFieldListView(generics.ListAPIView):
     filter_backends = [DjangoFilterBackend, OrderingFilter]
     filterset_class = filters.FootbalFieldFilter
     ordering_fields = ['price_per_hour']
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        # queryset = queryset.annotate(
+        #     broned_times=Subquery(Booking.objects.filter(field_id=OuterRef('id')), output_field=)
+        # )
+        queryset = queryset.annotate(
+            booking_list=ArrayAgg(
+                JSONObject(
+                    start_time=F('bookings__start_time'),
+                    end_time=F('bookings__end_time')
+                )
+            )
+        )
+        return queryset
 
 
 class FootballFieldCreateView(generics.CreateAPIView):
