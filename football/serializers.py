@@ -24,7 +24,6 @@ class FootballFieldSerializer(serializers.ModelSerializer):
                   'images', 'distance', 'free_times']
 
     def get_free_times(self, instance):
-        print('------', instance)
         start_time = make_aware(datetime.now())
         end_time = make_aware(datetime.now() + timedelta(days=7))
         free_slots = []
