@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y gcc libpq-dev
 RUN pip install --upgrade pip
 
 # `requirements.txt` faylini ko'chiramiz va kutubxonalarni o'rnatamiz
-COPY requirements.txt /app/
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Ilovaning barcha fayllarini ishchi katalogga ko'chiramiz
