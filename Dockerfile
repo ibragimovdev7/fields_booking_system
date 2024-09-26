@@ -1,8 +1,14 @@
-# Base image sifatida Python 3.9 versiyasidan foydalanamiz
+# Python 3.9 slim image'dan foydalanamiz
 FROM python:3.9-slim
 
 # Ishchi katalogni yaratamiz
 WORKDIR /app
+
+# Tizim kutubxonalarini o'rnatamiz (psycopg2 kabi paketlar uchun kerak bo'ladi)
+RUN apt-get update && apt-get install -y gcc libpq-dev
+
+# Pipni yangilab olamiz
+RUN pip install --upgrade pip
 
 # `requirements.txt` faylini ko'chiramiz va kutubxonalarni o'rnatamiz
 COPY requirements.txt /app/
