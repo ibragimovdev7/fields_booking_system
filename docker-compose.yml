@@ -21,7 +21,7 @@ services:
     depends_on:
       - db
     environment:
-      - DJANGO_SETTINGS_MODULE=myproject.settings
+      - DJANGO_SETTINGS_MODULE=football_booking.settings
       - DATABASE_URL=postgres://test:password@db:5432/test
 
   nginx:
