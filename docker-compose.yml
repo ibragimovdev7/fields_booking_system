@@ -27,7 +27,7 @@ services:
   nginx:
     image: nginx:latest
     ports:
-      - "80:80"
+      - "8081:80"
     volumes:
       - ./nginx:/etc/nginx/sites-available/test_django.conf
     depends_on:
