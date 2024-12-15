@@ -13,11 +13,11 @@ services:
 
   web:
     build: .
-    command: gunicorn myproject.wsgi:application --bind 0.0.0.0:8080
+    command: gunicorn myproject.wsgi:application --bind 0.0.0.0:8085
     volumes:
       - .:/app
     ports:
-      - "8080:8080"
+      - "8085:8085"
     depends_on:
       - db
     environment:

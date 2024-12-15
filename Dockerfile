@@ -14,7 +14,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 RUN python manage.py collectstatic --noinput
 
 # Expose port
-EXPOSE 8080
+EXPOSE 8085
 
 # Start server
-CMD ["gunicorn", "football_booking.wsgi:application", "--bind", "0.0.0.0:8080"]
+CMD ["gunicorn", "football_booking.wsgi:application", "--bind", "0.0.0.0:8085"]
